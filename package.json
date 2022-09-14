@@ -1,0 +1,25 @@
+{
+  "name": "workflow-vue",
+  "version": "0.0.1",
+  "description": "workflow drawing and configuration based on vue3",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roy-kang/workflow-vue.git"
+  },
+  "keywords": [
+    "vue3",
+    "workflow",
+    "canvas",
+    "chart"
+  ],
+  "author": "roy-kang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/roy-kang/workflow-vue/issues"
+  },
+  "homepage": "https://github.com/roy-kang/workflow-vue#readme"
+}
