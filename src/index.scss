@@ -1,0 +1,269 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.workflow-top {
+  position: relative;
+  z-index: 2;
+  padding: 10px;
+  height: 45px;
+  box-sizing: border-box;
+  box-shadow: 0 0 10px 0 rgb(0 0 0 / 20%);
+  background-color: #fff;
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.workflow-main {
+  position: relative;
+  box-sizing: border-box;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .workflow-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    z-index: 1;
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 20%);
+  }
+
+  .workflow-middle {
+    position: relative;
+    height: 100%;
+    padding: 10px;
+    margin: 0 300px 0 200px;
+    overflow: hidden;
+    background-color: #eee;
+
+    .mask {
+      position: absolute;
+      width: calc(100% + 500px);
+      height: calc(100% + 500px);
+      padding: 40px;
+      background-color: #ccc;
+    }
+
+    #mask-canvas {
+      position: absolute;
+      background-color: #fff;
+    }
+
+    .workflow-container {
+      position: absolute;
+    }
+  }
+
+  .shape_box {
+    position: absolute;
+  }
+
+  .shape_canvas {
+    border: 1px solid #aaa;
+  }
+
+  .workflow-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    z-index: 1;
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 20%);
+
+    .el-form--default.el-form--label-top .el-form-item {
+      margin-bottom: 10px;
+
+      .el-form-item__label {
+        margin-bottom: 0;
+        line-height: 32px;
+      }
+    }
+
+    .is-required > label::before {
+      content: "*";
+      color: red;
+      margin-right: 3px;
+    }
+  }
+
+  .component-item {
+    padding: 12px 8px;
+    cursor: move;
+    background-color: #fff;
+    margin-bottom: 10px;
+    border-radius: 2px;
+    color: #2e2e38;
+    font-size: 16px;
+
+    &:hover {
+      background-color: rgb(24 144 255 / 10%);
+    }
+  }
+
+  .left-list-icon {
+    margin-right: 10px;
+    vertical-align: top;
+  }
+
+  .shape-control {
+    position: absolute;
+    z-index: 99999;
+    user-select: none;
+    border: 1px dashed #59c7f9;
+    cursor: move;
+  }
+
+  .shape-contour {
+    width: 0;
+    height: 0;
+  }
+
+  .shape-point {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #59c7f9;
+    width: 8px;
+    height: 8px;
+    z-index: 1;
+    margin-left: -4px;
+    margin-top: -4px;
+
+    &.up,
+    &.right,
+    &.down,
+    &.left {
+      cursor: crosshair;
+      border-radius: 50%;
+      display: none;
+    }
+
+    &.left-up {
+      left: 0;
+      top: 0;
+      cursor: se-resize;
+    }
+
+    &.right-up {
+      left: 100%;
+      top: 0;
+      cursor: ne-resize;
+    }
+
+    &.right-down {
+      left: 100%;
+      top: 100%;
+      cursor: se-resize;
+    }
+
+    &.left-down {
+      left: 0;
+      top: 100%;
+      cursor: ne-resize;
+    }
+  }
+
+  .render-component {
+    position: absolute;
+    text-align: center;
+    user-select: none;
+
+    &.active,
+    &:hover {
+      .shape-point {
+        display: block;
+      }
+    }
+  }
+
+  .text-content {
+    position: absolute;
+    inset: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    border: 1px solid #59c7f9;
+    cursor: text;
+    font-size: 12px;
+  }
+
+  .area-contaier {
+    position: absolute;
+    border: 1px solid #59c7f9;
+    background-color: rgb(89 199 249 / 10%);
+    z-index: 9999;
+  }
+
+  .line-extrainfo {
+    position: absolute;
+    padding: 0 5px;
+    text-align: center;
+    background-color: #fff;
+    outline: none;
+    font-size: 11px;
+    line-height: 16px;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    user-select: none;
+
+    &.editing {
+      box-shadow: 0 0 10px 0 rgb(0 0 0 / 20%);
+      cursor: text;
+      border: 1px solid #59c7f9;
+      user-select: text;
+      min-width: 50px;
+    }
+  }
+
+  .adsorb-line {
+    position: absolute;
+    width: 0;
+    height: 0;
+    z-index: 9999;
+
+    &.coord-x {
+      width: 100%;
+      left: 0;
+      border-top: 1px dashed #59c7f9;
+    }
+
+    &.coord-y {
+      height: 100%;
+      top: 0;
+      border-left: 1px dashed #59c7f9;
+    }
+  }
+
+  .component-attr-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .el-select {
+    width: 100%;
+  }
+}
+
+.component-container {
+  border: 2px solid #1890ff;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  align-items: center;
+  cursor: move;
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 5px;
+}

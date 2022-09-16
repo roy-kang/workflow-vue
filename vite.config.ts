@@ -1,0 +1,46 @@
+// import { fileURLToPath, URL } from 'node:url'
+import path from 'path'
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import dts from 'vite-plugin-dts'
+import pkg from './package.json'
+
+const createBanner = () => {
+  return `/*!
+  * ${pkg.name} v${pkg.version}
+  * (c) ${new Date().getFullYear()} workflow-vue
+  * @license ${pkg.license}
+  */`
+}
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    vue(),
+    dts({
+      include: ['./src'],
+      outputDir: './types'
+    })
+  ],
+  build: {
+    rollupOptions: {
+      external: [
+        'vue',
+        'element-plus'
+      ],
+      output: {
+        globals: {
+          vue: 'Vue'
+        },
+        banner: createBanner()
+      }
+    },
+    lib: {
+      entry: path.resolve(__dirname, './src/index.ts'),
+      name: 'index',
+      fileName: 'index',
+      formats: ['es', 'umd']
+    },
+    outDir: path.resolve(__dirname, './dist')
+  }
+})
