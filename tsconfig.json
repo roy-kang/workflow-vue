@@ -68,7 +68,8 @@
     "resolveJsonModule": true
   },
   "include": [
-    "src",
+    "packages",
+    "example",
     "types"
   ],
   "exclude": [

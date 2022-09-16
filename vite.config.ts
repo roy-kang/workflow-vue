@@ -15,6 +15,11 @@ const createBanner = () => {
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  root: process.env.NODE_ENV !== 'production' ? path.resolve(__dirname, './example') : undefined,
+  server: {
+    port: 5555,
+    host: '0.0.0.0'
+  },
   plugins: [
     vue(),
     dts({
@@ -36,8 +41,8 @@ export default defineConfig({
       }
     },
     lib: {
-      entry: path.resolve(__dirname, './src/index.ts'),
-      name: 'index',
+      entry: path.resolve(__dirname, './packages/index.ts'),
+      name: 'workflow',
       fileName: 'index',
       formats: ['es', 'umd']
     },

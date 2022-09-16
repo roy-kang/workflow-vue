@@ -174,15 +174,6 @@ const emits = defineEmits([
   'line-change'
 ])
 
-interface Test {
-  test: string
-}
-
-const a: Test = {
-  test: ''
-}
-console.warn(a)
-
 const componentList = ref<WF.ComponentType[]>(props.config) // 节点配置列表
 const componentRenderList = ref<WF.ComponentType[]>([]) // 已渲染的组件列表
 const selectedComponents = ref<WF.ComponentType[]>([])  // 区域选中组件列表
