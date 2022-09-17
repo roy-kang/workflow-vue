@@ -1,0 +1,15 @@
+ls:
+  packages:
+    .dir: kebab-case | regex:__[a-z0-9]+__
+    .scss: kebab-case
+    .vue: kebab-case | PascalCase
+    .js: kebab-case
+    .svg: kebab-case
+    .ts: kebab-case
+    .d.ts: kebab-case
+
+ignore:
+  - node_modules
+  - example
+  - dist
+  - types
