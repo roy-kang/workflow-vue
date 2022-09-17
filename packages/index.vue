@@ -191,10 +191,10 @@ const operateType = ref<'edit' | 'add'>()     // 当前流程操作的类型
 const propOptions = ref<Record<string, any>>()// 属性内所有的下拉数据
 
 let cacheLineType: WF.LineType = 'broken'     // 缓存线类型
-let ctx: CanvasRenderingContext2D             // canvas 2d 实例
-let canvasWidth: number
-let canvasHeight: number
-let activeLinePoints: WF.LineInfo  // 正在拖拽绘制的连线
+let ctx!: CanvasRenderingContext2D             // canvas 2d 实例
+let canvasWidth!: number
+let canvasHeight!: number
+let activeLinePoints!: WF.LineInfo  // 正在拖拽绘制的连线
 
 // 撤销和恢复操作
 const cacheComponentList = ref<WF.ComponentType[][]>([])
@@ -298,7 +298,7 @@ const ondrop = (e: DragEvent) => {
   chacheStack()
 }
 
-let isMoveComponent = false, pagex = 0, pagey = 0, cacheAttr: WF.Attr
+let isMoveComponent = false, pagex = 0, pagey = 0, cacheAttr!: WF.Attr
 let otherCoords: Set<number>[] = [], allSelectdAttr: WF.Attr[] = []
 // 组件拖动
 const componentMouseDown = (e: MouseEvent, component: WF.ComponentType, isMask?: boolean) => {
@@ -366,8 +366,8 @@ const customMenu = (e: MouseEvent) => {
   e.preventDefault()
 }
 const canvasCursor = ref('default')
-let lastAboveLine: WF.LineInfo | null // 最后一根鼠标接触过的线
-let highlightLine: WF.LineInfo | null // 当前高亮的线
+let lastAboveLine!: WF.LineInfo | null // 最后一根鼠标接触过的线
+let highlightLine!: WF.LineInfo | null // 当前高亮的线
 let isAbove = false // 是否在线上
 // 无状态下鼠标下是否有线
 const canvasMove = (e: MouseEvent) => {
@@ -575,11 +575,11 @@ const maskDbClick = () => {
 }
 
 let drawLineStatus = false
-let directionStart: WF.Direction
-let directionEnd: WF.Direction | undefined
-let targetComponent: WF.ComponentType
-let startx: number
-let starty: number
+let directionStart!: WF.Direction
+let directionEnd!: WF.Direction | undefined
+let targetComponent!: WF.ComponentType
+let startx!: number
+let starty!: number
 // 连线起点
 const drawLineStart = (e: MouseEvent, type: WF.Direction, component: WF.ComponentType) => {
   drawLineStatus = true
@@ -646,7 +646,7 @@ const drawLineEnd = (e: MouseEvent, type: WF.Direction | 'parent', component: WF
 }
 
 let changeSizeStatus = false
-let quadrant: WF.Quadrant // 四象限
+let quadrant!: WF.Quadrant // 四象限
 // 四个角拖拽改变组件大小
 const changeSizeStart = (e: MouseEvent, type: WF.Quadrant, component: WF.ComponentType) => {
   changeSizeStatus = true

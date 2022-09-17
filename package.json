@@ -20,7 +20,12 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "eslint": "eslint \"packages/**/{*.ts,*.vue}\"",
+    "eslint:fix": "eslint --fix \"packages/**/{*.ts,*.vue}\"",
+    "stylelint": "stylelint \"packages/**/*.scss\"",
+    "stylelint:fix": "stylelint --fix \"packages/**/*.scss\"",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -43,14 +48,31 @@
     "vue": ">=3.2.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "@ls-lint/ls-lint": "^1.11.2",
+    "@typescript-eslint/eslint-plugin": "^5.37.0",
+    "@typescript-eslint/parser": "^5.37.0",
     "@vitejs/plugin-vue": "^3.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^9.5.1",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "postcss": "^8.3.3",
+    "postcss-scss": "^4.0.5",
     "sass": "^1.53.0",
+    "stylelint": "^14.11.0",
+    "stylelint-config-standard": "^28.0.0",
     "typescript": "^4.7.4",
     "vite": "^3.0.2",
     "vite-plugin-dts": "^1.4.0"
   },
   "dependencies": {
     "element-plus": "^2.2.15",
-    "vue": "^3.2.37"
+    "vue": "3.2.26"
+  },
+  "lint-staged": {
+    "packages/**/*.{ts,vue}": "eslint --fix",
+    "packages/**/*.scss": "stylelint --fix"
   }
 }

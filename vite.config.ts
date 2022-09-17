@@ -23,8 +23,10 @@ export default defineConfig({
   plugins: [
     vue(),
     dts({
-      include: ['./src'],
-      outputDir: './types'
+      include: ['./packages'],
+      outputDir: './types',
+      // skipDiagnostics: false,
+      logDiagnostics: true
     })
   ],
   build: {
