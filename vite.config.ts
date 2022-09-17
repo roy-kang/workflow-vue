@@ -25,7 +25,7 @@ export default defineConfig({
     dts({
       include: ['./packages'],
       outputDir: './types',
-      // skipDiagnostics: false,
+      skipDiagnostics: false,
       logDiagnostics: true
     })
   ],
