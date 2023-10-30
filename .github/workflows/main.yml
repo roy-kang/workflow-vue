@@ -35,7 +35,7 @@ jobs:
         with:
           node-version: 16
       - name: Install pnpm
-        run: npm install pnpm
+        run: npm install pnpm -g
       - name: Install dependencies
         run: pnpm install
       - name: Build
