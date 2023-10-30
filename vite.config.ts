@@ -15,6 +15,7 @@ const createBanner = () => {
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: process.env.NODE_ENV === 'development' ? '/' : '/workflow-vue/',
   root: process.env.NODE_ENV !== 'production' ? path.resolve(__dirname, './example') : undefined,
   server: {
     port: 5555,
