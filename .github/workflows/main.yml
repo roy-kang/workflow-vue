@@ -37,7 +37,7 @@ jobs:
       - name: Install pnpm
         run: npm install pnpm -g
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
       - name: Build
         run: pnpm build
       - name: Setup Pages
