@@ -13,6 +13,37 @@ const createBanner = () => {
   */`
 }
 
+const isView = process.argv[4] === 'view'
+
+const getBuildConfig = (): any => {
+  if (!isView) {
+    return {
+      rollupOptions: {
+        external: [
+          'vue',
+          'element-plus'
+        ],
+        output: {
+          globals: {
+            vue: 'Vue'
+          },
+          banner: createBanner()
+        }
+      },
+      lib: {
+        entry: path.resolve(__dirname, './packages/index.ts'),
+        name: 'workflow',
+        fileName: 'index',
+        formats: ['es', 'umd']
+      },
+      outDir: path.resolve(__dirname, './dist')
+    }
+  }
+  return {
+    outDir: '../dist',
+  }
+}
+
 // https://vitejs.dev/config/
 export default defineConfig({
   base: process.env.NODE_ENV === 'development' ? '/' : '/workflow-vue/',
@@ -23,32 +54,12 @@ export default defineConfig({
   },
   plugins: [
     vue(),
-    dts({
+    !isView && dts({
       include: ['./packages'],
       outputDir: './types',
       skipDiagnostics: false,
       logDiagnostics: true
     })
   ],
-  build: {
-    rollupOptions: {
-      external: [
-        'vue',
-        'element-plus'
-      ],
-      output: {
-        globals: {
-          vue: 'Vue'
-        },
-        banner: createBanner()
-      }
-    },
-    lib: {
-      entry: path.resolve(__dirname, './packages/index.ts'),
-      name: 'workflow',
-      fileName: 'index',
-      formats: ['es', 'umd']
-    },
-    outDir: path.resolve(__dirname, './dist')
-  }
+  build: getBuildConfig()
 })
